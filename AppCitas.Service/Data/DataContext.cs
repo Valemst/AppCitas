@@ -1,7 +1,7 @@
 ﻿using AppCitas.Service.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppCitas.Service.Controllers.Data;
+namespace AppCitas.Service.Data;
 
 public class DataContext : DbContext
 {

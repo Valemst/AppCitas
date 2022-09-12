@@ -25,3 +25,13 @@ C:\sources\AppCitas\AppCitas.Service\obj\Debug\net6.0\refint\AppCitas.Service.dl
 C:\sources\AppCitas\AppCitas.Service\obj\Debug\net6.0\AppCitas.Service.pdb
 C:\sources\AppCitas\AppCitas.Service\obj\Debug\net6.0\AppCitas.Service.genruntimeconfig.cache
 C:\sources\AppCitas\AppCitas.Service\obj\Debug\net6.0\ref\AppCitas.Service.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.Data.Sqlite.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\SQLitePCLRaw.core.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Humanizer.dll
+C:\sources\AppCitas\AppCitas.Service\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
