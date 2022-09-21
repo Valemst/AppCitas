@@ -1,9 +1,7 @@
 ﻿using AppCitas.Service.Data;
 using AppCitas.Service.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AppCitas.Service.Controllers;
 

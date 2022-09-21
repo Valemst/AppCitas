@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using AppCitas.Service.Data;
-using Microsoft.IdentityModel.Tokens;
 using AppCitas.Service.Interfaces;
 using AppCitas.Service.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AppCitas.Service.Extension;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AppCitas;
 
@@ -22,31 +23,16 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddScoped<ITokenService, TokenService>();
-        services.AddDbContext<DataContext>(options =>
-        {
-            options.UseSqlite(
-                _config.GetConnectionString("DefaultConnection"));
-        });
+        services.AddAplicationServices(_config);
         services.AddControllers();
         services.AddCors();
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"])),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-
-            });
+        services.AddIdentityServices(_config);
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
         });
     }
+
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
