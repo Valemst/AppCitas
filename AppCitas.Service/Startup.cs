@@ -1,12 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using AppCitas.Service.Data;
-using AppCitas.Service.Interfaces;
-using AppCitas.Service.Services;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using AppCitas.Service.Extension;
-using Microsoft.IdentityModel.Tokens;
+using AppCitas.Service.Middleware;
 
 namespace AppCitas;
 
@@ -43,6 +37,8 @@ public class Startup
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
         }
+
+        app.UseMiddleware<ExceptionMiddleware>();
 
         app.UseHttpsRedirection();
 
