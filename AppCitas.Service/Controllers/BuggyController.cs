@@ -7,37 +7,36 @@ namespace AppCitas.Service.Controllers;
 
 public class BuggyController : BaseApiController
 {
-	private readonly DataContext _context;
-	public BuggyController(DataContext context)
-	{
-			_context = context;
-	}
+    private readonly DataContext _context;
 
-	[HttpGet("auth")]
-	[Authorize]
-	public ActionResult<string> GetSecret()
-	{
-		return "Sercret text";
-	}
+    public BuggyController(DataContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet("auth")]
+    [Authorize]
+    public ActionResult<string> GetSecret()
+    {
+        return "Secret text";
+    }
 
     [HttpGet("not-found")]
-    [Authorize]
-    public ActionResult<AppUser> GetFound()
+    public ActionResult<AppUser> GetNotFound()
     {
-		var thing = _context.Users.Find(-1);
+        var thing = _context.Users.Find(-1);
 
-		if (thing == null) return NotFound();
+        if (thing == null) return NotFound();
 
         return Ok(thing);
     }
 
     [HttpGet("server-error")]
-    [Authorize]
     public ActionResult<string> GetServerError()
     {
-		var thing = _context.Users.Find(-1);
+        var thing = _context.Users.Find(-1);
 
-		var thingToReturn = thing.ToString();
+        var thingToReturn = thing.ToString();
 
         return thingToReturn;
     }

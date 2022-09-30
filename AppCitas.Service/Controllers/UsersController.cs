@@ -1,34 +1,34 @@
-﻿using AppCitas.Service.Data;
-using AppCitas.Service.Entities;
+﻿using AppCitas.Service.DTOs;
+using AppCitas.Service.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppCitas.Service.Controllers;
 
+[Authorize]
 public class UsersController : BaseApiController
 {
-	private readonly DataContext _context;
+    private readonly IUserRepository _userRepository;
+    private readonly IMapper _mapper;
 
-	public UsersController(DataContext context)
-	{
-		_context = context;
-	}
-
-	// GET api/users
-	[HttpGet]
-	[AllowAnonymous]
-	public ActionResult<IEnumerable<AppUser>> GetUsers()
-	{
-		var users = _context.Users.ToList();
-
-		return users;
-	}
-
-	//GET api/users/{id}
-    [HttpGet("{id}")]
-	[Authorize]
-    public async Task<ActionResult<AppUser>> GetUserById(int id)
+    public UsersController(IUserRepository userRepository, IMapper mapper)
     {
-        return await _context.Users.FindAsync(id);
+        _userRepository = userRepository;
+        _mapper = mapper;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+    {
+        var users = await _userRepository.GetMembersAsync();
+
+        return Ok(users);
+    }
+
+    [HttpGet("{username}")]
+    public async Task<ActionResult<MemberDto>> GetUserByUsername(string username)
+    {
+        return await _userRepository.GetMemberAsync(username);
     }
 }

@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Text;
 
-namespace AppCitas.Service.Extension;
+namespace AppCitas.Service.Extensions;
 
 public static class IdentityServiceExtensions
 {
@@ -19,7 +18,6 @@ public static class IdentityServiceExtensions
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
-
             });
 
         return services;
