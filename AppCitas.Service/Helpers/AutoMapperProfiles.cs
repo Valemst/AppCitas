@@ -1,6 +1,6 @@
 ﻿using AppCitas.Service.DTOs;
 using AppCitas.Service.Entities;
-using AppCitas.Service.Extension;
+using AppCitas.Service.Extensions;
 using AutoMapper;
 
 namespace AppCitas.Service.Helpers;
@@ -18,5 +18,6 @@ public class AutoMapperProfiles : Profile
                 opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
         CreateMap<Photo, PhotoDto>();
         CreateMap<MemberUpdateDto, AppUser>();
+        CreateMap<RegisterDto, AppUser>();
     }
 }

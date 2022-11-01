@@ -1,4 +1,4 @@
-﻿namespace AppCitas.Service.Extension;
+﻿namespace AppCitas.Service.Extensions;
 
 public static class DateTimeExtensions
 {
