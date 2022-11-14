@@ -7,7 +7,6 @@ public class DataContext : DbContext
 {
     public DataContext(DbContextOptions options) : base(options)
     {
-
     }
 
     public DbSet<AppUser> Users { get; set; }
@@ -35,12 +34,12 @@ public class DataContext : DbContext
 
         builder.Entity<Message>()
             .HasOne(u => u.Recipient)
-            .WithMany(m => m.MessageReceived)
+            .WithMany(m => m.MessagesReceived)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<Message>()
             .HasOne(u => u.Sender)
-            .WithMany(m => m.MessageSent)
+            .WithMany(m => m.MessagesSent)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

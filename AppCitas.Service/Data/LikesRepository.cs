@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppCitas.Service.Data;
 
-public class LikesRepository : ILikeRepository
+public class LikesRepository : ILikesRepository
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;

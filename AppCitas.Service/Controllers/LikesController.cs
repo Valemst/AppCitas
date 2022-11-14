@@ -10,9 +10,9 @@ namespace AppCitas.Service.Controllers;
 public class LikesController : BaseApiController
 {
     private readonly IUserRepository _userRepository;
-    private readonly ILikeRepository _likesRepository;
+    private readonly ILikesRepository _likesRepository;
 
-    public LikesController(IUserRepository userRepository, ILikeRepository likesRespository)
+    public LikesController(IUserRepository userRepository, ILikesRepository likesRespository)
     {
         _userRepository = userRepository;
         _likesRepository = likesRespository;

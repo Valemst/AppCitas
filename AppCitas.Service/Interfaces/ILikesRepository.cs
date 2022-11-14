@@ -4,7 +4,7 @@ using AppCitas.Service.Helpers;
 
 namespace AppCitas.Service.Interfaces;
 
-public interface ILikeRepository
+public interface ILikesRepository
 {
     Task<UserLike> GetUserLike(int sourceId, int likedUserId);
     Task<PagedList<LikeDto>> GetUsersLikes(LikesParams likesParams);
