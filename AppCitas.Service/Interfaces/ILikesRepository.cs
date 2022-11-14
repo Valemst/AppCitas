@@ -6,7 +6,7 @@ namespace AppCitas.Service.Interfaces;
 
 public interface ILikesRepository
 {
-    Task<UserLike> GetUserLike(int sourceId, int likedUserId);
-    Task<PagedList<LikeDto>> GetUsersLikes(LikesParams likesParams);
+    Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);
+    Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams);
     Task<AppUser> GetUserWithLikes(int userId);
 }

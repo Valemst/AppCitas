@@ -3,22 +3,24 @@ using AppCitas.Service.Entities;
 using AppCitas.Service.Extensions;
 using AppCitas.Service.Helpers;
 using AppCitas.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppCitas.Service.Controllers;
 
+[Authorize]
 public class LikesController : BaseApiController
 {
     private readonly IUserRepository _userRepository;
     private readonly ILikesRepository _likesRepository;
 
-    public LikesController(IUserRepository userRepository, ILikesRepository likesRespository)
+    public LikesController(IUserRepository userRepository, ILikesRepository likesRepository)
     {
         _userRepository = userRepository;
-        _likesRepository = likesRespository;
+        _likesRepository = likesRepository;
     }
 
-    [HttpPost("{username")]
+    [HttpPost("{username}")]
     public async Task<ActionResult> AddLike(string username)
     {
         var sourceUserId = User.GetUserId();
@@ -50,12 +52,11 @@ public class LikesController : BaseApiController
     public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
     {
         likesParams.UserId = User.GetUserId();
-        var users = await _likesRepository.GetUsersLikes(likesParams);
+        var users = await _likesRepository.GetUserLikes(likesParams);
 
         Response.AddPaginationHeader(
             users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
         return Ok(users);
     }
-
 }

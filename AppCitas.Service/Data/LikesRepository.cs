@@ -24,7 +24,7 @@ public class LikesRepository : ILikesRepository
         return await _context.Likes.FindAsync(sourceUserId, likedUserId);
     }
 
-    public async Task<PagedList<LikeDto>> GetUsersLikes(LikesParams likesParams)
+    public async Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams)
     {
         var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();
         var likes = _context.Likes.AsQueryable();
@@ -41,18 +41,23 @@ public class LikesRepository : ILikesRepository
             users = likes.Select(like => like.SourceUser);
         }
 
-        var likeUsers = users.Select(user => new LikeDto
+        var likedUsers = users.Select(user => new LikeDto
         {
             Username = user.UserName,
-            KnowAs = user.KnownAs,
+            KnownAs = user.KnownAs,
             Age = user.DateOfBirth.CalculateAge(),
-            PhoroUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url,
+            PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url,
             City = user.City,
             Id = user.Id
         });
 
         return await PagedList<LikeDto>
-            .CreateAsync(likeUsers, likesParams.PageNumber, likesParams.PageSize);
+            .CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
+    }
+
+    public Task<PagedList<LikeDto>> GetUsersLikes(LikesParams likesParams)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<AppUser> GetUserWithLikes(int userId)

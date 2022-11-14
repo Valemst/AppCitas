@@ -20,7 +20,7 @@ public class AccountController : BaseApiController
     {
         _context = context;
         _tokenService = tokenService;
-        _mapper = mapper;;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]
